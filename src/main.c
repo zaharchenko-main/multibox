@@ -138,7 +138,7 @@ int main(int argc, char **argv)
       printf("usage: multibox [function [arguments]...]\n");
     }
     else if (argv[1][0]=='-' && argv[1][1]=='v' && argv[1][2]=='\0') {
-      printf("multibox 0.01-zaharchenko\n");
+      printf("multibox 0.02-zaharchenko\n");
     }
     else {
       func_name = argv[1];

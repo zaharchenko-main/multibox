@@ -11,19 +11,19 @@ static char *getpwd(void)
   char *pwd;
   if ((pwd = getenv("PWD")) != NULL && *pwd == '/') {
     if (stat(pwd, &a) == -1 || stat(".", &b) == -1) {
-      return (NULL);
+      return NULL;
     }
     if (a.st_dev == b.st_dev && a.st_ino == b.st_ino) {
-      return (pwd);
+      return pwd;
     }
   }
   errno = ENOENT;
-  return (NULL);
+  return NULL;
 }
 
 int pwd_main(int argc, char **argv)
 {
-  int opt, lp=0, e=0;
+  int opt, p=0, e=0;
   char *cwd;
 
   while ((opt = getopt(argc, argv, "::LP")) != -1)
@@ -31,10 +31,10 @@ int pwd_main(int argc, char **argv)
     switch (opt)
     {
       case 'L':
-        lp = 0;
+        p = 0;
         break;
       case 'P':
-        lp = 1;
+        p = 1;
         break;
       case '?':
         e = 1;
@@ -45,7 +45,7 @@ int pwd_main(int argc, char **argv)
     printf("usage: pwd [-LP]\n");
     return 1;
   }
-  if ((!lp && (cwd = getpwd()) != NULL) || ((lp || errno == ENOENT) && (cwd = getcwd(NULL, 0)) != NULL)) {
+  if ((!p && (cwd = getpwd()) != NULL) || ((p || errno == ENOENT) && (cwd = getcwd(NULL, 0)) != NULL)) {
     printf("%s\n", cwd);
   }
   else {

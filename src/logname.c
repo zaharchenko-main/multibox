@@ -9,7 +9,7 @@ int logname_main(int argc, char **argv)
   }
   char *login = getlogin();
   if (!login) {
-    printf("no login name.\n");
+    printf("logname: error\n");
     return 1;
   }
   printf("%s\n", login);

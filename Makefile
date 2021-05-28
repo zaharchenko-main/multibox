@@ -1,7 +1,12 @@
-all:build
+MAKEFLAGS += --no-print-directory
+
+all:compile build
+
+compile:
+	mkdir -p bin objs && cd objs && gcc -c ../src/*.c
 
 build:
-	gcc -s -O3 -static src/*.c -o multibox
+	gcc -s -O2 -static -Wall objs/*.o -o bin/multibox
 
 clean:
-	rm -rf libs obj
+	rm -rf bin libs obj objs

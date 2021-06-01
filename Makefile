@@ -1,4 +1,4 @@
-all:build
+all:build install
 
 CC := clang-12
 FS := -s -O2 -fpie -Wall
@@ -95,6 +95,8 @@ build:
 	@echo "[$(CC)] Compile   : $(BN) <= yes.c"
 	@$(CC) -c src/yes.c -o objs/yes.o
 
+
+install:
 	@$(CC) $(FS) objs/*.o -o bin/$(BN)
 	@echo "[$(CC)] Install   : $(BN) => bin/$(BN)"
 

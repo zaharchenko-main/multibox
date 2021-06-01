@@ -9,7 +9,7 @@ int rmdir_main(int argc, char **argv)
   }
   for (int i = 1; i < argc; i++) {
     if(rmdir(argv[i]) < 0) {
-      perror("rmdir");
+      printf("rmdir: error");
       return 1;
     }
   }

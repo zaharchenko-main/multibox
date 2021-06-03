@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <string.h>
-#include <libgen.h>
-#include <unistd.h>
-
 int arch_main(int argc, char **argv);
 int basename_main(int argc, char **argv);
 int clear_main(int argc, char **argv);
@@ -14,6 +9,7 @@ int hostname_main(int argc, char **argv);
 int link_main(int argc, char **argv);
 int ln_main(int argc, char **argv);
 int logname_main(int argc, char **argv);
+int mkdir_main(int argc, char **argv);
 int printenv_main(int argc, char **argv);
 int pwd_main(int argc, char **argv);
 int readlink_main(int argc, char **argv);
@@ -32,10 +28,17 @@ int usleep_main(int argc, char **argv);
 int whoami_main(int argc, char **argv);
 int yes_main(int argc, char **argv);
 
+#include <stdio.h>
+#include <string.h>
+#include <libgen.h>
+#include <unistd.h>
+
+#define ESC "\n"
+
 int multibox(int argc, char **argv, char *func_name)
 {
   if (!func_name) {
-    printf("multibox: error\n");
+    printf("multibox: error"ESC);
     return 1;
   }
 
@@ -68,6 +71,9 @@ int multibox(int argc, char **argv, char *func_name)
   }
   else if (strcmp(func_name, "ln") == 0) {
     return ln_main(argc, argv);
+  }
+  else if (strcmp(func_name, "mkdir") == 0) {
+    return mkdir_main(argc, argv);
   }
   else if (strcmp(func_name, "logname") == 0) {
     return logname_main(argc, argv);
@@ -125,29 +131,30 @@ int multibox(int argc, char **argv, char *func_name)
   }
 
   else {
-    printf("%s: not a function\n", func_name);
+    printf("%s: not a function"ESC, func_name);
   }
   return 1;
 }
 
 int main(int argc, char **argv)
 {
-  char *func_name = basename(argv[0]);
-  if (strncmp(func_name, "multibox", 8) == 0) {
+  if (strncmp(basename(argv[0]), "multibox", 8) == 0) {
     if (!argv[1]) {
-      printf("usage: multibox [function [arguments]...]\n");
+      printf("usage: multibox [function [arguments]...]"ESC);
     }
     else if (argv[1][0]=='-' && argv[1][1]=='v' && argv[1][2]=='\0') {
-      printf("multibox 0.02-zaharchenko\n");
+      printf("multibox 0.02-zaharchenko"ESC);
+    }
+    else if (argv[1][0]=='-' && argv[1][1]=='l' && argv[1][2]=='\0') {
+      printf("arch"ESC"basename"ESC"clear"ESC"dirname"ESC"echo"ESC"env"ESC"false"ESC"hostname"ESC"link"ESC"ln"ESC"logname"ESC"mkdir"ESC"printenv"ESC"pwd"ESC"readlink"ESC"realpath"ESC"reset"ESC"rmdir"ESC"sleep"ESC"symlink"ESC"sync"ESC"test"ESC"true"ESC"tty"ESC"uname"ESC"unlink"ESC"usleep"ESC"whoami"ESC"yes"ESC);
     }
     else {
-      func_name = argv[1];
       argv[0] = NULL;
       argv++, argc--;
-      return multibox(argc, argv, func_name);
+      return multibox(argc, argv, argv[0]);
     }
   }
   else {
-    return multibox(argc, argv, func_name);
+    return multibox(argc, argv, basename(argv[0]));
   }
 }

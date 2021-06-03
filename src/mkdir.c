@@ -1,15 +1,15 @@
 #include <stdio.h>
-#include <unistd.h>
+#include <sys/stat.h>
 
-int rmdir_main(int argc, char **argv)
+int mkdir_main(int argc, char **argv)
 {
   if(!argv[1] || (argv[1] && argv[1][0] == '-')) {
-    printf("usage: rmdir [dir]...\n");
+    printf("usage: mkdir [dir]...\n");
     return 1;
   }
   for (int i = 1; i < argc; i++) {
-    if(rmdir(argv[i]) < 0) {
-      printf("rmdir: error\n");
+    if(mkdir(argv[i], 0777) < 0) {
+      printf("mkdir: error\n");
       return 1;
     }
   }

@@ -41,6 +41,9 @@ build:
 	@echo "[$(CC)] Compile   : $(BN) <= logname.c"
 	@$(CC) -c src/logname.c -o objs/logname.o
 
+	@echo "[$(CC)] Compile   : $(BN) <= mkdir.c"
+	@$(CC) -c src/mkdir.c -o objs/mkdir.o
+
 	@echo "[$(CC)] Compile   : $(BN) <= main.c"
 	@$(CC) -c src/main.c -o objs/main.o
 
@@ -156,6 +159,11 @@ single-binary:
 	@cat src/logname.c > tmp.c
 	@echo "int main(int a,char **b){return logname_main(a,b);}" >> tmp.c
 	@$(CC) $(FS) tmp.c -o bin/logname && rm -rf tmp.c
+
+	@echo "[$(CC)] Build   : mkdir.c => bin/mkdir"
+	@cat src/mkdir.c > tmp.c
+	@echo "int main(int a,char **b){return mkdir_main(a,b);}" >> tmp.c
+	@$(CC) $(FS) tmp.c -o bin/mkdir && rm -rf tmp.c
 
 	@echo "[$(CC)] Build   : printenv.c => bin/printenv"
 	@cat src/printenv.c > tmp.c

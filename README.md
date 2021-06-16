@@ -3,7 +3,6 @@
 
 ## all functions
 
-    arch, basename, clear, dirname, echo, env, false,
-    hostname, link, ln, logname, printenv, pwd, readlink,
-    realpath, reset, rmdir, sleep, symlink, sync, test,
-    true, tty, uname, unlink, usleep, whoami, yes.
+    usage: multibox [function [arguments]...]
+       or: multibox -v
+       or: multibox -l

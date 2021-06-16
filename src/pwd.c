@@ -50,6 +50,7 @@ int pwd_main(int argc, char **argv)
   }
   else {
     printf("pwd: error\n");
+    return 1;
   }
   return 0;
 }

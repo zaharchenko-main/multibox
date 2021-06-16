@@ -1,7 +1,7 @@
 all:help
 
 help:
-	@echo "help"
+	@echo "ndk-build"
 clean:
 	@echo "[*] Clean : libs, obj"
 	@rm -rf libs obj

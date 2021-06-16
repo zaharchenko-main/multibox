@@ -31,7 +31,6 @@ int yes_main(int argc, char **argv);
 #include <stdio.h>
 #include <string.h>
 #include <libgen.h>
-#include <unistd.h>
 
 #define ESC "\n"
 

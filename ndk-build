@@ -1,0 +1,107 @@
+#!/bin/sh
+
+NDK="/root/android-ndk-r21e"
+OUT="obj/local/arm64-v8a/objs/multibox"
+FLG="-gcc-toolchain $NDK/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64 -target aarch64-none-linux-android -ffunction-sections -funwind-tables -fstack-protector-strong -fpic -Wno-invalid-command-line-argument -Wno-unused-command-line-argument -no-canonical-prefixes  -g -O2 -DNDEBUG  -Ijni/../src   -DANDROID  -D__ANDROID_API__=30 -Wa,--noexecstack -Wformat -Werror=format-security  --sysroot $NDK/sysroot -isystem $NDK/sysroot/usr/include/aarch64-linux-android -c"
+
+mkdir -p $OUT libs/arm64-v8a/
+
+printf "[arm64-v8a] Compile        : multibox <= arch.c\n"
+clang -MMD -MP -MF ./$OUT/arch.o.d $FLG jni/../src/arch.c -o ./$OUT/arch.o
+
+printf "[arm64-v8a] Compile        : multibox <= basename.c\n"
+clang -MMD -MP -MF ./$OUT/basename.o.d $FLG jni/../src/basename.c -o ./$OUT/basename.o
+
+printf "[arm64-v8a] Compile        : multibox <= clear.c\n"
+clang -MMD -MP -MF ./$OUT/clear.o.d $FLG jni/../src/clear.c -o ./$OUT/clear.o
+
+printf "[arm64-v8a] Compile        : multibox <= dirname.c\n"
+clang -MMD -MP -MF ./$OUT/dirname.o.d $FLG jni/../src/dirname.c -o ./$OUT/dirname.o
+
+printf "[arm64-v8a] Compile        : multibox <= echo.c\n"
+clang -MMD -MP -MF ./$OUT/echo.o.d $FLG jni/../src/echo.c -o ./$OUT/echo.o
+
+printf "[arm64-v8a] Compile        : multibox <= env.c\n"
+clang -MMD -MP -MF ./$OUT/env.o.d $FLG jni/../src/env.c -o ./$OUT/env.o
+
+printf "[arm64-v8a] Compile        : multibox <= false.c\n"
+clang -MMD -MP -MF ./$OUT/false.o.d $FLG jni/../src/false.c -o ./$OUT/false.o
+
+printf "[arm64-v8a] Compile        : multibox <= hostname.c\n"
+clang -MMD -MP -MF ./$OUT/hostname.o.d $FLG jni/../src/hostname.c -o ./$OUT/hostname.o
+
+printf "[arm64-v8a] Compile        : multibox <= link.c\n"
+clang -MMD -MP -MF ./$OUT/link.o.d $FLG jni/../src/link.c -o ./$OUT/link.o
+
+printf "[arm64-v8a] Compile        : multibox <= ln.c\n"
+clang -MMD -MP -MF ./$OUT/ln.o.d $FLG jni/../src/ln.c -o ./$OUT/ln.o
+
+printf "[arm64-v8a] Compile        : multibox <= logname.c\n"
+clang -MMD -MP -MF ./$OUT/logname.o.d $FLG jni/../src/logname.c -o ./$OUT/logname.o
+
+printf "[arm64-v8a] Compile        : multibox <= main.c\n"
+clang -MMD -MP -MF ./$OUT/main.o.d $FLG jni/../src/main.c -o ./$OUT/main.o
+
+printf "[arm64-v8a] Compile        : multibox <= mkdir.c\n"
+clang -MMD -MP -MF ./$OUT/mkdir.o.d $FLG jni/../src/mkdir.c -o ./$OUT/mkdir.o
+
+printf "[arm64-v8a] Compile        : multibox <= nproc.c\n"
+clang -MMD -MP -MF ./$OUT/nproc.o.d $FLG jni/../src/nproc.c -o ./$OUT/nproc.o
+
+printf "[arm64-v8a] Compile        : multibox <= printenv.c\n"
+clang -MMD -MP -MF ./$OUT/printenv.o.d $FLG jni/../src/printenv.c -o ./$OUT/printenv.o
+
+printf "[arm64-v8a] Compile        : multibox <= pwd.c\n"
+clang -MMD -MP -MF ./$OUT/pwd.o.d $FLG jni/../src/pwd.c -o ./$OUT/pwd.o
+
+printf "[arm64-v8a] Compile        : multibox <= readlink.c\n"
+clang -MMD -MP -MF ./$OUT/readlink.o.d $FLG jni/../src/readlink.c -o ./$OUT/readlink.o
+
+printf "[arm64-v8a] Compile        : multibox <= realpath.c\n"
+clang -MMD -MP -MF ./$OUT/realpath.o.d $FLG jni/../src/realpath.c -o ./$OUT/realpath.o
+
+printf "[arm64-v8a] Compile        : multibox <= reset.c\n"
+clang -MMD -MP -MF ./$OUT/reset.o.d $FLG jni/../src/reset.c -o ./$OUT/reset.o
+
+printf "[arm64-v8a] Compile        : multibox <= rmdir.c\n"
+clang -MMD -MP -MF ./$OUT/rmdir.o.d $FLG jni/../src/rmdir.c -o ./$OUT/rmdir.o
+
+printf "[arm64-v8a] Compile        : multibox <= sleep.c\n"
+clang -MMD -MP -MF ./$OUT/sleep.o.d $FLG jni/../src/sleep.c -o ./$OUT/sleep.o
+
+printf "[arm64-v8a] Compile        : multibox <= symlink.c\n"
+clang -MMD -MP -MF ./$OUT/symlink.o.d $FLG jni/../src/symlink.c -o ./$OUT/symlink.o
+
+printf "[arm64-v8a] Compile        : multibox <= sync.c\n"
+clang -MMD -MP -MF ./$OUT/sync.o.d $FLG jni/../src/sync.c -o ./$OUT/sync.o
+
+printf "[arm64-v8a] Compile        : multibox <= test.c\n"
+clang -MMD -MP -MF ./$OUT/test.o.d $FLG jni/../src/test.c -o ./$OUT/test.o
+
+printf "[arm64-v8a] Compile        : multibox <= true.c\n"
+clang -MMD -MP -MF ./$OUT/true.o.d $FLG jni/../src/true.c -o ./$OUT/true.o
+
+printf "[arm64-v8a] Compile        : multibox <= tty.c\n"
+clang -MMD -MP -MF ./$OUT/tty.o.d $FLG jni/../src/tty.c -o ./$OUT/tty.o
+
+printf "[arm64-v8a] Compile        : multibox <= uname.c\n"
+clang -MMD -MP -MF ./$OUT/uname.o.d $FLG jni/../src/uname.c -o ./$OUT/uname.o
+
+printf "[arm64-v8a] Compile        : multibox <= unlink.c\n"
+clang -MMD -MP -MF ./$OUT/unlink.o.d $FLG jni/../src/unlink.c -o ./$OUT/unlink.o
+
+printf "[arm64-v8a] Compile        : multibox <= usleep.c\n"
+clang -MMD -MP -MF ./$OUT/usleep.o.d $FLG jni/../src/usleep.c -o ./$OUT/usleep.o
+
+printf "[arm64-v8a] Compile        : multibox <= whoami.c\n"
+clang -MMD -MP -MF ./$OUT/whoami.o.d $FLG jni/../src/whoami.c -o ./$OUT/whoami.o
+
+printf "[arm64-v8a] Compile        : multibox <= yes.c\n"
+clang -MMD -MP -MF ./$OUT/yes.o.d $FLG jni/../src/yes.c -o ./$OUT/yes.o
+
+printf "[arm64-v8a] Executable     : multibox\n"
+clang -Wl,--gc-sections -Wl,-z,nocopyreloc --sysroot=$NDK/platforms/android-30/arch-arm64 -Wl,-rpath-link=$NDK/platforms/android-30/arch-arm64/usr/lib -Wl,-rpath-link=./obj/local/arm64-v8a ./$OUT/arch.o ./$OUT/basename.o ./$OUT/clear.o ./$OUT/dirname.o ./$OUT/echo.o ./$OUT/env.o ./$OUT/false.o ./$OUT/hostname.o ./$OUT/link.o ./$OUT/ln.o ./$OUT/logname.o ./$OUT/main.o ./$OUT/mkdir.o ./$OUT/nproc.o ./$OUT/printenv.o ./$OUT/pwd.o ./$OUT/readlink.o ./$OUT/realpath.o ./$OUT/reset.o ./$OUT/rmdir.o ./$OUT/sleep.o ./$OUT/symlink.o ./$OUT/sync.o ./$OUT/test.o ./$OUT/true.o ./$OUT/tty.o ./$OUT/uname.o ./$OUT/unlink.o ./$OUT/usleep.o ./$OUT/whoami.o ./$OUT/yes.o -lgcc -Wl,--exclude-libs,libgcc.a  -gcc-toolchain $NDK/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64 -target aarch64-none-linux-android -no-canonical-prefixes  -static -Wl,--build-id=none -Wl,--no-undefined -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now -Wl,--warn-shared-textrel -Wl,--fatal-warnings -lc -lm -o ./obj/local/arm64-v8a/multibox
+
+printf "[arm64-v8a] Install        : multibox => libs/arm64-v8a/multibox\n"
+install -p ./obj/local/arm64-v8a/multibox ./libs/arm64-v8a/multibox
+aarch64-linux-gnu-strip --strip-unneeded  ./libs/arm64-v8a/multibox

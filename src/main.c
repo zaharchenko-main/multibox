@@ -10,6 +10,7 @@ int link_main(int argc, char **argv);
 int ln_main(int argc, char **argv);
 int logname_main(int argc, char **argv);
 int mkdir_main(int argc, char **argv);
+int nproc_main(int argc, char **argv);
 int printenv_main(int argc, char **argv);
 int pwd_main(int argc, char **argv);
 int readlink_main(int argc, char **argv);
@@ -73,6 +74,9 @@ int multibox(int argc, char **argv, char *func_name)
   }
   else if (strcmp(func_name, "mkdir") == 0) {
     return mkdir_main(argc, argv);
+  }
+  else if (strcmp(func_name, "nproc") == 0) {
+    return nproc_main(argc, argv);
   }
   else if (strcmp(func_name, "logname") == 0) {
     return logname_main(argc, argv);
@@ -145,7 +149,7 @@ int main(int argc, char **argv)
       printf("multibox 0.02-zaharchenko"ESC);
     }
     else if (argv[1][0]=='-' && argv[1][1]=='l' && argv[1][2]=='\0') {
-      printf("arch"ESC"basename"ESC"clear"ESC"dirname"ESC"echo"ESC"env"ESC"false"ESC"hostname"ESC"link"ESC"ln"ESC"logname"ESC"mkdir"ESC"printenv"ESC"pwd"ESC"readlink"ESC"realpath"ESC"reset"ESC"rmdir"ESC"sleep"ESC"symlink"ESC"sync"ESC"test"ESC"true"ESC"tty"ESC"uname"ESC"unlink"ESC"usleep"ESC"whoami"ESC"yes"ESC);
+      printf("arch"ESC"basename"ESC"clear"ESC"dirname"ESC"echo"ESC"env"ESC"false"ESC"hostname"ESC"link"ESC"ln"ESC"logname"ESC"mkdir"ESC"nproc"ESC"printenv"ESC"pwd"ESC"readlink"ESC"realpath"ESC"reset"ESC"rmdir"ESC"sleep"ESC"symlink"ESC"sync"ESC"test"ESC"true"ESC"tty"ESC"uname"ESC"unlink"ESC"usleep"ESC"whoami"ESC"yes"ESC);
     }
     else {
       argv[0] = NULL;

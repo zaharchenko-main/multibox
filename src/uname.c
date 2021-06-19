@@ -12,10 +12,16 @@ static void Print(char *word)
   header = 0;
 }
 
+static int usage(void)
+{
+  printf("usage: uname [-asnrvmo]\n");
+  return 1;
+}
+
 int uname_main(int argc, char **argv)
 {
   struct utsname buffer;
-  int opt, s=0, n=0, r=0, v=0, m=0, o=0, e=0;
+  int opt, s=0, n=0, r=0, v=0, m=0, o=0;
   if (uname(&buffer) < 0) {
     printf("uname: error\n");
   }
@@ -46,13 +52,13 @@ int uname_main(int argc, char **argv)
         s = n = r = v = m = o = 1;
         break;
       case '?':
-        e = 1;
+      default:
+        return usage();
     }
   }
 
-  if (e || (argv[1] && (argv[1][0] != '-' || !argv[1][1]))) {
-    printf("usage: uname [-asnrvmo]\n");
-    return 1;
+  if (argv[1] && (argv[1][0] != '-' || !argv[1][1])) {
+    return usage();
   }
   if (s || !(n || r || v || m || o)) {
     Print(buffer.sysname);

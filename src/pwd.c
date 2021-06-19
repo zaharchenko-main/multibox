@@ -5,6 +5,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+static int usage(void)
+{
+  printf("usage: pwd [-LP]\n");
+  return 1;
+}
+
 static char *getpwd(void)
 {
   struct stat a, b;
@@ -37,13 +43,13 @@ int pwd_main(int argc, char **argv)
         p = 1;
         break;
       case '?':
-        e = 1;
+      default:
+        return usage();
     }
   }
 
-  if (e || (argv[1] && (argv[1][0] != '-' || !argv[1][1]))) {
-    printf("usage: pwd [-LP]\n");
-    return 1;
+  if (argv[1] && (argv[1][0] != '-' || !argv[1][1])) {
+    return usage();
   }
   if ((!p && (cwd = getpwd()) != NULL) || ((p || errno == ENOENT) && (cwd = getcwd(NULL, 0)) != NULL)) {
     printf("%s\n", cwd);

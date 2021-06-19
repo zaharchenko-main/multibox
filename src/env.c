@@ -3,11 +3,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+static int usage(void)
+{
+  printf("usage: env [-iu] [name=value]... [cmd [arg]...]\n");
+  return 1;
+}
+
 int env_main(int argc, char **argv)
 {
   extern char **environ;
   char **aa;
-  int opt, e=0;
+  int opt;
 
   while ((opt = getopt(argc, argv, "::-iu:")) != -1)
   {
@@ -24,12 +30,9 @@ int env_main(int argc, char **argv)
         }
         break;
       case '?':
-        e = 1;
+      default:
+        return usage();
     }
-  }
-  if (e) {
-    printf("usage: env [-iu] [name=value]... [cmd [arg]...]\n");
-    return 1;
   }
   for (argv += optind; *argv && strchr(*argv, '='); argv++) {
     putenv(*argv);

@@ -16,6 +16,6 @@ int clear_main(int argc, char **argv)
   if (!x) {
     printf("\033c");
   }
-  printf("\033[H\033[J");
+  printf("\x1b[2J\x1b[H");
   return 0;
 }
